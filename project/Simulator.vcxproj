@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -109,7 +109,7 @@
     <Text Include="..\config\06_SensorNoise.txt" />
     <Text Include="..\config\07_AttitudeEstimation.txt" />
     <Text Include="..\config\08_PredictState.txt" />
-    <Text Include="..\config\09_PredictionCovariance.txt" />
+    <Text Include="..\config\09_PredictCovariance.txt" />
     <Text Include="..\config\10_MagUpdate.txt" />
     <Text Include="..\config\11_GPSUpdate.txt" />
     <Text Include="..\config\LastScenario.txt" />
