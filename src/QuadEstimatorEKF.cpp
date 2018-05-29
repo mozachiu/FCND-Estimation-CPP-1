@@ -214,7 +214,22 @@ MatrixXf QuadEstimatorEKF::GetRbgPrime(float roll, float pitch, float yaw)
   //   that your calculations are reasonable
 
   ////////////////////////////// BEGIN STUDENT CODE ///////////////////////////
+  // Ref: "Estimation for Quadrotors" paper ( Eq. 52 )
+  float theta = pitch;
+  float phi = roll;
+  float psi = yaw;
 
+  RbgPrime(0, 0) = (-(cos(theta) * sin(psi)));
+  RbgPrime(0, 1) = (-(sin(phi) * sin(theta) * sin(psi)) - (cos(phi) * cos(psi)));
+  RbgPrime(0, 2) = (-(cos(phi) * sin(theta) * sin(psi)) + (sin(phi) * cos(psi)));
+
+  RbgPrime(1, 0) = (cos(theta) * cos(psi));
+  RbgPrime(1, 1) = (sin(phi) * sin(theta) * cos(psi)) - (cos(phi) * sin(psi));
+  RbgPrime(1, 2) = (cos(phi) * sin(theta) * cos(psi)) + (sin(phi) * sin(psi));
+
+  RbgPrime(2, 0) = 0;
+  RbgPrime(2, 1) = 0;
+  RbgPrime(2, 2) = 0;
 
   /////////////////////////////// END STUDENT CODE ////////////////////////////
 
@@ -261,7 +276,7 @@ void QuadEstimatorEKF::Predict(float dt, V3F accel, V3F gyro)
 
   ////////////////////////////// BEGIN STUDENT CODE ///////////////////////////
 
-  // From "Estimation for Quadrotors" paper ( Eq. 51 )
+  // Ref: "Estimation for Quadrotors" paper ( Eq. 51 )
   gPrime(0,3) = dt;
   gPrime(1,4) = dt;
   gPrime(2,5) = dt;
@@ -270,7 +285,7 @@ void QuadEstimatorEKF::Predict(float dt, V3F accel, V3F gyro)
   gPrime(4, 6) = (RbgPrime(1) * accel).sum() * dt;
   gPrime(5, 6) = (RbgPrime(2) * accel).sum() * dt;
 
-  // From "Estimation for Quadrotors" paper ( Section 3 )
+  // Ref: "Estimation for Quadrotors" paper ( Section 3 )
   ekfCov = gPrime * ekfCov * gPrime.transpose() + Q;
 
   /////////////////////////////// END STUDENT CODE ////////////////////////////
@@ -299,9 +314,9 @@ void QuadEstimatorEKF::UpdateFromGPS(V3F pos, V3F vel)
 
   for (int i = 0; i < 6; i++)
   {
-    // From "Estimation for Quadrotors" paper (  Eq. 53 & Eq. 54  )
+    // Ref: "Estimation for Quadrotors" paper (  Eq. 53 & Eq. 54  )
     zFromX(i) = ekfState(i);
-    // From "Estimation for Quadrotors" paper ( Eq. 55 )
+    // Ref: "Estimation for Quadrotors" paper ( Eq. 55 )
     hPrime(i, i) = 1;
   }
 
