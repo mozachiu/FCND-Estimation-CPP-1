@@ -16,9 +16,20 @@ In this project, we will be developing an estimator to be used by your controlle
 - [QuadEstimatorEKF.cpp](src/QuadEstimatorEKF.cpp) and [QuadEstimatorEKF.txt](config/QuadEstimatorEKF.txt) containing your estimator and associated estimator parameters that successfully meets all the performance criteria.
 - [QuadController.cpp](src/QuadControl.cpp) and [QuadControlParams.txt](config/QuadControlParams.txt) containing your re-tuned controller needed to work successfully with your estimator.
 
-### Determine the standard deviation of the measurement noise of both GPS X data and Accelerometer X data. ###
-#### The calculated standard deviation should correctly capture ~68% of the sensor measurements. Your writeup should describe the method used for determining the standard deviation given the simulated sensor measurements. ####
+
+### Step 1: Sensor Noise ###
+#### Determine the standard deviation of the measurement noise of both GPS X data and Accelerometer X data. ####
+The calculated standard deviation should correctly capture ~68% of the sensor measurements. Your writeup should describe the method used for determining the standard deviation given the simulated sensor measurements. 
+
+- changes are reflected in [config/06_SensorNoise.txt](config/06_SensorNoise.txt)
+- MeasuredStdDev_GPSPosXY = 0.67
+- MeasuredStdDev_AccelXY = .49
 ```
+- Run simulator using 06_NoisySensors.txt
+- Collect [config/log/Graph1.txt](test/GraphSN1.txt) and [config/log/Graph1.txt](test/GraphSN2.txt)
+- [Process standard deviation](test/SensorNoise.py) using collected files 
+- Updated config/6_Sensornoise.txt with computed MeasuredStdDev_GPSPosXY and MeasuredStdDev_AccelXY
+- Run the simulator using update 06_NoisySensors.txt, sensor mesurements should correctly capture ~68%
 ```
 
 ### Implement a better rate gyro attitude integration scheme in the UpdateFromIMU() function. ###
