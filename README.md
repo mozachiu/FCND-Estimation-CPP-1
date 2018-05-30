@@ -34,6 +34,13 @@ The calculated standard deviation should correctly capture ~68% of the sensor me
 - Updated config/6_Sensornoise.txt with computed MeasuredStdDev_GPSPosXY and MeasuredStdDev_AccelXY
 - Run the simulator using update 06_NoisySensors.txt, sensor mesurements should correctly capture ~68%
 ```
+Result
+---
+ Before                     |  After
+ :-------------------------:|:-------------------------:
+ <img src="images/sensor-noise-before.PNG" width="320" height="160" alt="Before" /> |  <img src="images/sensor-noise-after.PNG" width="320" height="160" alt="After" />
+
+
 
 ### Implement a better rate gyro attitude integration scheme in the UpdateFromIMU() function. ###
 #### The improved integration scheme should result in an attitude estimator of < 0.1 rad for each of the Euler angles for a duration of at least 3 seconds during the simulation. The integration scheme should use quaternions to improve performance over the current simple integration scheme. ####
