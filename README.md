@@ -68,9 +68,9 @@ The prediction step should include the state update element (PredictState() func
 
 ```
 ```
-<p align="center">
- <img src="images/PredictState.PNG" width="800" height="600" alt="Before" /> 
-</p>
+PredictState                     |  PredictCovariance
+ :-------------------------:|:-------------------------:
+ <img src="images/PredictState.PNG" width="450" height="250" alt="Before" /> |  <img src="images/PredictCovariance.PNG" width="450" height="250" alt="After" />
  ----
  
 ### Implement the magnetometer update. ###
