@@ -24,10 +24,13 @@ The calculated standard deviation should correctly capture ~68% of the sensor me
 - changes are reflected in [config/06_SensorNoise.txt](config/06_SensorNoise.txt)
 - MeasuredStdDev_GPSPosXY = 0.67
 - MeasuredStdDev_AccelXY = .49
+- Config logs [config/log/Graph1.txt](test/GraphSN1.txt) and [config/log/Graph1.txt](test/GraphSN2.txt)
+- [Standard deviation processor](test/SensorNoise.py)
+
 ```
 - Run simulator using 06_NoisySensors.txt
-- Collect [config/log/Graph1.txt](test/GraphSN1.txt) and [config/log/Graph1.txt](test/GraphSN2.txt)
-- [Process standard deviation](test/SensorNoise.py) using collected files 
+- Collect Config logs
+- Process standard deviation using collected files 
 - Updated config/6_Sensornoise.txt with computed MeasuredStdDev_GPSPosXY and MeasuredStdDev_AccelXY
 - Run the simulator using update 06_NoisySensors.txt, sensor mesurements should correctly capture ~68%
 ```
