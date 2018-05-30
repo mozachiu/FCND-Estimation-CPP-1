@@ -134,8 +134,7 @@ The estimator should correctly incorporate the GPS information to update the cur
 ### Meet the performance criteria of each step. ###
 For each step of the project, the final estimator should be able to successfully meet the performance criteria with the controller provided. The estimator's parameters should be properly adjusted to satisfy each of the performance criteria elements. 
 ```
-- For each task, the final estimator successfully meet the performance criteria with the controller provided.
-- Please refer result provided in all tasks.
+- All scenarios meet the performance criteria, as shown in the previous sections.
 ```
 
 ### Task 6: Adding Own Controller ###
@@ -146,7 +145,8 @@ The controller developed in the previous project should be de-tuned to successfu
 ```
 - QuadController.cpp is updated from last project
 - QuadControlParams.txt is updated from last project
-- The controller added from previous project successfully meet the performance criteria of the final scenario (<1m error for entire box flight). Result is indicated in Task 5.
+- The controller added from previous project successfully meet the performance criteria of the final scenario (<1m error for entire box flight).
+- Position and velocity gains have gone down from the initial value. This is enough to make the drone fly with an error of <1m for the entire box flight as shown in Task 5.
 ```
 
 MonteCarloTest                     |  TestManyQuads
