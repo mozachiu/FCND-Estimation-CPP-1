@@ -8,11 +8,9 @@ In this project, we will be developing an estimator to be used by your controlle
 <img src="images/intro.png" width="400"/>
 </p>
 
----
 ## Writeup ##
 - [README](./README.md) 
 
----
 ## Implement Estimator ##
 - [QuadEstimatorEKF.cpp](src/QuadEstimatorEKF.cpp) and [QuadEstimatorEKF.txt](config/QuadEstimatorEKF.txt) containing your estimator and associated estimator parameters that successfully meets all the performance criteria.
 - [QuadController.cpp](src/QuadControl.cpp) and [QuadControlParams.txt](config/QuadControlParams.txt) containing your re-tuned controller needed to work successfully with your estimator.
@@ -37,7 +35,6 @@ The calculated standard deviation should correctly capture ~68% of the sensor me
 ```
  <img src="images/sensor-noise-value.PNG" width="500" height="40" alt="Values" /> 
 
-----
  Before                     |  After
  :-------------------------:|:-------------------------:
  <img src="images/sensor-noise-before.PNG" width="450" height="250" alt="Before" /> |  <img src="images/sensor-noise-after.PNG" width="450" height="250" alt="After" />
@@ -52,10 +49,8 @@ The improved integration scheme should result in an attitude estimator of < 0.1 
 
 ```
 ```
-----
- Result                     
  :-------------------------:
- <img src="images/AttitudeEstimation.PNG" width="650" height="450" alt="Before" /> 
+ <img src="images/AttitudeEstimation.PNG" width="800" height="600" alt="Before" /> 
  ----
 
 ### Implement all of the elements of the prediction step for the estimator. ###
