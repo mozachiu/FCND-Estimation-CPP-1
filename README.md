@@ -110,8 +110,18 @@ The update should properly include the magnetometer data into the state. Note th
 The estimator should correctly incorporate the GPS information to update the current state estimate. 
 
 - changes are reflected in [src/QuadEstimatorEKF.cpp#L313-L323](src/QuadEstimatorEKF.cpp#L313-L323)
+- changes are reflected in [config/11_GPSUpdate.txt](config/11_GPSUpdate.txt)
+- Quad.UseIdealEstimator = 0
+- #SimIMU.AccelStd = 0,0,0
+- #SimIMU.GyroStd = 0,0,0
+- "Estimation for Quadrotors" paper equations (53), (54), and (55)  
+<p align="center">
+ <img src="images/GPSUpdate.PNG" width="800" height="600" alt="Before" /> 
+</p>
 
 ```
+- Get yaw estimates
+- Update Partial Derivative hPrime which is identity matrix here
 ```
 <p align="center">
  <img src="images/GPSUpdate-Controller.PNG" width="800" height="600" alt="Before" /> 
@@ -143,27 +153,6 @@ Project outline:
 
 
 
-1. Run scenario `11_GPSUpdate`.  At the moment this scenario is using both an ideal estimator and and ideal IMU.  Even with these ideal elements, watch the position and velocity errors (bottom right). As you see they are drifting away, since GPS update is not yet implemented.
-
-2. Let's change to using your estimator by setting `Quad.UseIdealEstimator` to 0 in `config/11_GPSUpdate.txt`.  Rerun the scenario to get an idea of how well your estimator work with an ideal IMU.
-
-3. Now repeat with realistic IMU by commenting out these lines in `config/11_GPSUpdate.txt`:
-```
-#SimIMU.AccelStd = 0,0,0
-#SimIMU.GyroStd = 0,0,0
-```
-
-4. Tune the process noise model in `QuadEstimatorEKF.txt` to try to approximately capture the error you see with the estimated uncertainty (standard deviation) of the filter.
-
-5. Implement the EKF GPS Update in the function `UpdateFromGPS()`.
-
-6. Now once again re-run the simulation.  Your objective is to complete the entire simulation cycle with estimated position error of < 1m (you’ll see a green box over the bottom graph if you succeed).  You may want to try experimenting with the GPS update parameters to try and get better performance.
-
-***Success criteria:*** *Your objective is to complete the entire simulation cycle with estimated position error of < 1m.*
-
-**Hint: see section 7.3.1 of [Estimation for Quadrotors](https://www.overleaf.com/read/vymfngphcccj) for a refresher on the GPS update.**
-
-At this point, congratulations on having a working estimator!
 
 ### Step 6: Adding Your Controller ###
 
