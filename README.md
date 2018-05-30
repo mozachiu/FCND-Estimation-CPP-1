@@ -90,7 +90,6 @@ PredictState                     |  PredictCovariance
  
  ----
 ### Step 4: Magnetometer Update ###
-
 #### Implement the magnetometer update. ####
 The update should properly include the magnetometer data into the state. Note that the solution should make sure to correctly measure the angle error between the current state and the magnetometer value (error should be the short way around, not the long way). 
 
@@ -105,12 +104,21 @@ The update should properly include the magnetometer data into the state. Note th
  <img src="images/MagUpdate.PNG" width="800" height="600" alt="Before" /> 
 </p>
 
+ ----
+### Step 5: Closed Loop + GPS Update ###
+#### Implement the GPS update. ####
+The estimator should correctly incorporate the GPS information to update the current state estimate. 
 
-### Implement the GPS update. ###
-#### The estimator should correctly incorporate the GPS information to update the current state estimate. ####
+- changes are reflected in [src/QuadEstimatorEKF.cpp#L313-L323](src/QuadEstimatorEKF.cpp#L313-L323)
+
 ```
 ```
+<p align="center">
+ <img src="images/GPSUpdate-Controller.PNG" width="800" height="600" alt="Before" /> 
+</p>
 
+
+ ----
 ## Flight Evaluation ##
 
 ### Meet the performance criteria of each step. ###
@@ -130,32 +138,10 @@ Once again, you will be building up your estimator in pieces.  At each step, the
 
 Project outline:
 
- - [Step 4: Magnetometer Update](#step-4-magnetometer-update)
- - [Step 5: Closed Loop + GPS Update](#step-5-closed-loop--gps-update)
  - [Step 6: Adding Your Controller](#step-6-adding-your-controller)
 
-### Step 4: Magnetometer Update ###
-
-Up until now we've only used the accelerometer and gyro for our state estimation.  In this step, you will be adding the information from the magnetometer to improve your filter's performance in estimating the vehicle's heading.
-
-1. Run scenario `10_MagUpdate`.  This scenario uses a realistic IMU, but the magnetometer update hasn’t been implemented yet. As a result, you will notice that the estimate yaw is drifting away from the real value (and the estimated standard deviation is also increasing).  Note that in this case the plot is showing you the estimated yaw error (`quad.est.e.yaw`), which is drifting away from zero as the simulation runs.  You should also see the estimated standard deviation of that state (white boundary) is also increasing.
-
-2. Tune the parameter `QYawStd` (`QuadEstimatorEKF.txt`) for the QuadEstimatorEKF so that it approximately captures the magnitude of the drift, as demonstrated here:
-
-![mag drift](images/mag-drift.png)
-
-3. Implement magnetometer update in the function `UpdateFromMag()`.  Once completed, you should see a resulting plot similar to this one:
-
-![mag good](images/mag-good-solution.png)
-
-***Success criteria:*** *Your goal is to both have an estimated standard deviation that accurately captures the error and maintain an error of less than 0.1rad in heading for at least 10 seconds of the simulation.*
-
-**Hint: after implementing the magnetometer update, you may have to once again tune the parameter `QYawStd` to better balance between the long term drift and short-time noise from the magnetometer.**
-
-**Hint: see section 7.3.2 of [Estimation for Quadrotors](https://www.overleaf.com/read/vymfngphcccj) for a refresher on the magnetometer update.**
 
 
-### Step 5: Closed Loop + GPS Update ###
 
 1. Run scenario `11_GPSUpdate`.  At the moment this scenario is using both an ideal estimator and and ideal IMU.  Even with these ideal elements, watch the position and velocity errors (bottom right). As you see they are drifting away, since GPS update is not yet implemented.
 
