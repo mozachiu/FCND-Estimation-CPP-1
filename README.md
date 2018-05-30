@@ -89,10 +89,22 @@ PredictState                     |  PredictCovariance
  <img src="images/PredictState.PNG" width="450" height="250" alt="Before" /> |  <img src="images/PredictCovariance.PNG" width="450" height="250" alt="After" />
  
  ----
-### Implement the magnetometer update. ###
-#### The update should properly include the magnetometer data into the state. Note that the solution should make sure to correctly measure the angle error between the current state and the magnetometer value (error should be the short way around, not the long way). ####
+### Step 4: Magnetometer Update ###
+
+#### Implement the magnetometer update. ####
+The update should properly include the magnetometer data into the state. Note that the solution should make sure to correctly measure the angle error between the current state and the magnetometer value (error should be the short way around, not the long way). 
+
+- changes are reflected in [src/QuadEstimatorEKF.cpp#L342-L361](src/QuadEstimatorEKF.cpp#L342-L361)
+
 ```
+- Get yaw estimates
+- Normalize the difference between your measured and estimated yaw to -pi .. pi
+- Update Partial Derivative of Mesurement model hPrime
 ```
+<p align="center">
+ <img src="images/MagUpdate.PNG" width="800" height="600" alt="Before" /> 
+</p>
+
 
 ### Implement the GPS update. ###
 #### The estimator should correctly incorporate the GPS information to update the current state estimate. ####
@@ -118,42 +130,9 @@ Once again, you will be building up your estimator in pieces.  At each step, the
 
 Project outline:
 
-- [Step 3: Prediction Step](#step-3-prediction-step)
  - [Step 4: Magnetometer Update](#step-4-magnetometer-update)
  - [Step 5: Closed Loop + GPS Update](#step-5-closed-loop--gps-update)
  - [Step 6: Adding Your Controller](#step-6-adding-your-controller)
-
-
-### Step 3: Prediction Step ###
-
-In this next step you will be implementing the prediction step of your filter.
-
-
-1. Run scenario `08_PredictState`.  This scenario is configured to use a perfect IMU (only an IMU). Due to the sensitivity of double-integration to attitude errors, we've made the accelerometer update very insignificant (`QuadEstimatorEKF.attitudeTau = 100`).  The plots on this simulation show element of your estimated state and that of the true state.  At the moment you should see that your estimated state does not follow the true state.
-
-2. In `QuadEstimatorEKF.cpp`, implement the state prediction step in the `PredictState()` functon. If you do it correctly, when you run scenario `08_PredictState` you should see the estimator state track the actual state, with only reasonably slow drift, as shown in the figure below:
-
-![predict drift](images/predict-slow-drift.png)
-
-3. Now let's introduce a realistic IMU, one with noise.  Run scenario `09_PredictionCov`. You will see a small fleet of quadcopter all using your prediction code to integrate forward. You will see two plots:
-   - The top graph shows 10 (prediction-only) position X estimates
-   - The bottom graph shows 10 (prediction-only) velocity estimates
-You will notice however that the estimated covariance (white bounds) currently do not capture the growing errors.
-
-4. In `QuadEstimatorEKF.cpp`, calculate the partial derivative of the body-to-global rotation matrix in the function `GetRbgPrime()`.  Once you have that function implement, implement the rest of the prediction step (predict the state covariance forward) in `Predict()`.
-
-**Hint: see section 7.2 of [Estimation for Quadrotors](https://www.overleaf.com/read/vymfngphcccj) for a refresher on the the transition model and the partial derivatives you may need**
-
-**Hint: When it comes to writing the function for GetRbgPrime, make sure to triple check you've set all the correct parts of the matrix.**
-
-**Hint: recall that the control input is the acceleration!**
-
-5. Run your covariance prediction and tune the process parameters in `QuadEstimatorEKF.txt` to try to capture the magnitude of the error you see. Note that as error grows our simplified model will not capture the real error dynamics (for example, specifically, coming from attitude errors), therefore  try to make it look reasonable only for a relatively short prediction period (the scenario is set for one second).  A good solution looks as follows:
-
-![good covariance](images/predict-good-cov.png)
-
-***Success criteria:*** *This step doesn't have any specific measurable criteria being checked.*
-
 
 ### Step 4: Magnetometer Update ###
 
