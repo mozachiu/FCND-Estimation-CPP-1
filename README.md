@@ -34,7 +34,7 @@ The calculated standard deviation should correctly capture ~68% of the sensor me
 - Updated config/6_Sensornoise.txt with computed MeasuredStdDev_GPSPosXY and MeasuredStdDev_AccelXY
 - Run the simulator using update 06_NoisySensors.txt, sensor mesurements should correctly capture ~68%
 ```
- <img src="images/sensor-noise-value.PNG" width="800" height="30" alt="Values" /> 
+ <img src="images/sensor-noise-value.PNG" width="500" height="40" alt="Values" /> 
 
 ----
  Before                     |  After
