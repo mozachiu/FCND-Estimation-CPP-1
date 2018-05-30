@@ -116,7 +116,7 @@ The estimator should correctly incorporate the GPS information to update the cur
 - #SimIMU.GyroStd = 0,0,0
 - "Estimation for Quadrotors" paper equations (53), (54), and (55)  
 <p align="center">
- <img src="images/GPSUpdate.PNG" width="800" height="600" alt="Before" /> 
+ <img src="images/GPSUpdate.PNG" width="400" height="300" alt="GPS" /> 
 </p>
 
 ```
