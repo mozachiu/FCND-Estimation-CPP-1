@@ -5,7 +5,7 @@
 In this project, we will be developing an estimator to be used by your controller to successfully fly a desired flight path using realistic sensors. 
 
 <p align="center">
-<img src="images/controls.png" width="500"/>
+<img src="images/intro.png" width="500"/>
 </p>
 
 
