@@ -132,63 +132,25 @@ The estimator should correctly incorporate the GPS information to update the cur
 ## Flight Evaluation ##
 
 ### Meet the performance criteria of each step. ###
-#### For each step of the project, the final estimator should be able to successfully meet the performance criteria with the controller provided. The estimator's parameters should be properly adjusted to satisfy each of the performance criteria elements. ####
+For each step of the project, the final estimator should be able to successfully meet the performance criteria with the controller provided. The estimator's parameters should be properly adjusted to satisfy each of the performance criteria elements. 
 ```
-```
-
-### De-tune your controller to successfully fly the final desired box trajectory with your estimator and realistic sensors. ###
-#### The controller developed in the previous project should be de-tuned to successfully meet the performance criteria of the final scenario (<1m error for entire box flight). ####
-```
+- For each task, the final estimator successfully meet the performance criteria with the controller provided.
+- Please refer result provided in all tasks.
 ```
 
+### Task 6: Adding Own Controller ###
 
-## The Tasks ##
+#### De-tune your controller to successfully fly the final desired box trajectory with your estimator and realistic sensors. ####
+The controller developed in the previous project should be de-tuned to successfully meet the performance criteria of the final scenario (<1m error for entire box flight). 
 
-Once again, you will be building up your estimator in pieces.  At each step, there will be a set of success criteria that will be displayed both in the plots and in the terminal output to help you along the way.
-
-Project outline:
-
- - [Step 6: Adding Your Controller](#step-6-adding-your-controller)
-
-
-
-
-
-### Step 6: Adding Your Controller ###
-
-Up to this point, we have been working with a controller that has been relaxed to work with an estimated state instead of a real state.  So now, you will see how well your controller performs and de-tune your controller accordingly.
-
-1. Replace `QuadController.cpp` with the controller you wrote in the last project.
-
-2. Replace `QuadControlParams.txt` with the control parameters you came up with in the last project.
-
-3. Run scenario `11_GPSUpdate`. If your controller crashes immediately do not panic. Flying from an estimated state (even with ideal sensors) is very different from flying with ideal pose. You may need to de-tune your controller. Decrease the position and velocity gains (we’ve seen about 30% detuning being effective) to stabilize it.  Your goal is to once again complete the entire simulation cycle with an estimated position error of < 1m.
-
-**Hint: you may find it easiest to do your de-tuning as a 2 step process by reverting to ideal sensors and de-tuning under those conditions first.**
-
-***Success criteria:*** *Your objective is to complete the entire simulation cycle with estimated position error of < 1m.*
+```
+- QuadController.cpp is updated from last project
+- QuadControlParams.txt is updated from last project
+- The controller added from previous project successfully meet the performance criteria of the final scenario (<1m error for entire box flight). Result is indicated in Task 5.
+```
 
 
-## Tips and Tricks ##
+ ----
+Note: More information from [Udacity Readme.md](README-Udacity.md)
 
- - When it comes to transposing matrices, `.transposeInPlace()` is the function you want to use to transpose a matrix
-
- - The [Estimation for Quadrotors](https://www.overleaf.com/read/vymfngphcccj) document contains a helpful mathematical breakdown of the core elements on your estimator
-
-## Submission ##
-
-For this project, you will need to submit:
-
- - a completed estimator that meets the performance criteria for each of the steps by submitting:
-   - `QuadEstimatorEKF.cpp`
-   - `config/QuadEstimatorEKF.txt`
-
- - a re-tuned controller that, in conjunction with your tuned estimator, is capable of meeting the criteria laid out in Step 6 by submitting:
-   - `QuadController.cpp`
-   - `config/QuadControlParams.txt`
-
- - a write up addressing all the points of the rubric
-
-## Authors ##
-
-Thanks to Fotokite for the initial development of the project code and simulator.
+ ----
