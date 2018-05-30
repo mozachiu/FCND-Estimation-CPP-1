@@ -56,14 +56,19 @@ The improved integration scheme should result in an attitude estimator of < 0.1 
 <p align="center">
  <img src="images/AttitudeEstimation.PNG" width="800" height="600" alt="Before" /> 
 </p>
-
  ----
 
-### Implement all of the elements of the prediction step for the estimator. ###
-#### The prediction step should include the state update element (PredictState() function), a correct calculation of the Rgb prime matrix, and a proper update of the state covariance. The acceleration should be accounted for as a command in the calculation of gPrime. The covariance update should follow the classic EKF update equation. ####
-```
-```
+### Step 3: Prediction Step ###
+#### Implement all of the elements of the prediction step for the estimator. ####
+The prediction step should include the state update element (PredictState() function), a correct calculation of the Rgb prime matrix, and a proper update of the state covariance. The acceleration should be accounted for as a command in the calculation of gPrime. The covariance update should follow the classic EKF update equation. 
 
+```
+```
+<p align="center">
+ <img src="images/PredictState.PNG" width="800" height="600" alt="Before" /> 
+</p>
+ ----
+ 
 ### Implement the magnetometer update. ###
 #### The update should properly include the magnetometer data into the state. Note that the solution should make sure to correctly measure the angle error between the current state and the magnetometer value (error should be the short way around, not the long way). ####
 ```
@@ -93,32 +98,10 @@ Once again, you will be building up your estimator in pieces.  At each step, the
 
 Project outline:
 
- - [Step 2: Attitude Estimation](#step-2-attitude-estimation)
- - [Step 3: Prediction Step](#step-3-prediction-step)
+- [Step 3: Prediction Step](#step-3-prediction-step)
  - [Step 4: Magnetometer Update](#step-4-magnetometer-update)
  - [Step 5: Closed Loop + GPS Update](#step-5-closed-loop--gps-update)
  - [Step 6: Adding Your Controller](#step-6-adding-your-controller)
-
-
-
-### Step 2: Attitude Estimation ###
-
-Now let's look at the first step to our state estimation: including information from our IMU.  In this step, you will be improving the complementary filter-type attitude filter with a better rate gyro attitude integration scheme.
-
-1. Run scenario `07_AttitudeEstimation`.  For this simulation, the only sensor used is the IMU and noise levels are set to 0 (see `config/07_AttitudeEstimation.txt` for all the settings for this simulation).  There are two plots visible in this simulation.
-   - The top graph is showing errors in each of the estimated Euler angles.
-   - The bottom shows the true Euler angles and the estimates.
-Observe that there’s quite a bit of error in attitude estimation.
-
-2. In `QuadEstimatorEKF.cpp`, you will see the function `UpdateFromIMU()` contains a complementary filter-type attitude filter.  To reduce the errors in the estimated attitude (Euler Angles), implement a better rate gyro attitude integration scheme.  You should be able to reduce the attitude errors to get within 0.1 rad for each of the Euler angles, as shown in the screenshot below.
-
-![attitude example](images/attitude-screenshot.png)
-
-In the screenshot above the attitude estimation using linear scheme (left) and using the improved nonlinear scheme (right). Note that Y axis on error is much greater on left.
-
-***Success criteria:*** *Your attitude estimator needs to get within 0.1 rad for each of the Euler angles for at least 3 seconds.*
-
-**Hint: see section 7.1.2 of [Estimation for Quadrotors](https://www.overleaf.com/read/vymfngphcccj) for a refresher on a good non-linear complimentary filter for attitude using quaternions.**
 
 
 ### Step 3: Prediction Step ###
