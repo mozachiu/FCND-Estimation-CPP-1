@@ -9,6 +9,14 @@ In this project, we will be developing an estimator to be used by your controlle
 </p>
 
 
+## Writeup ##
+- [README](./README.md) 
+
+## Implement Estimator ##
+- [QuadEstimatorEKF.cpp](src/QuadEstimatorEKF.cpp) and [QuadEstimatorEKF.txt](config/QuadEstimatorEKF.txt) containing your estimator and associated estimator parameters that successfully meets all the performance criteria.
+- [QuadController.cpp](src/QuadControl.cpp) and [QuadControlParams.txt](config/QuadControlParams.txt) containing your re-tuned controller needed to work successfully with your estimator.
+
+
 ## The Tasks ##
 
 Once again, you will be building up your estimator in pieces.  At each step, there will be a set of success criteria that will be displayed both in the plots and in the terminal output to help you along the way.
