@@ -62,6 +62,10 @@ The improved integration scheme should result in an attitude estimator of < 0.1 
 #### Implement all of the elements of the prediction step for the estimator. ####
 The prediction step should include the state update element (PredictState() function), a correct calculation of the Rgb prime matrix, and a proper update of the state covariance. The acceleration should be accounted for as a command in the calculation of gPrime. The covariance update should follow the classic EKF update equation. 
 
+- changes are reflected in function implementation of [PredictState()](src/QuadEstimatorEKF.cpp#L173-L192)
+- changes are reflected in function implementation of [GetRbgPrime()](src/QuadEstimatorEKF.cpp#L216-L234)
+- changes are reflected in function implementation of [Predict()](src/QuadEstimatorEKF.cpp#L277-L291)
+
 ```
 ```
 <p align="center">
