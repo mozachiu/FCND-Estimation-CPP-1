@@ -48,6 +48,10 @@ The improved integration scheme should result in an attitude estimator of < 0.1 
 - changes are reflected in [src/QuadEstimatorEKF.cpp#L96-L108](src/QuadEstimatorEKF.cpp#L96-L108)
 
 ```
+- Comment out predictedPitch ,predictedRoll and ekfState(6) to avoid integrating yaw twice
+- Use quaternions as integration scheme to improve performance over current simple integration scheme
+- Though not Euler angles, Quaternion has IntegrateBodyRate to use.
+- Compute predictedPitch, predictedRoll and ekfState(6) using Quaternion Roll, Pitch and Yaw
 ```
 <p align="center">
  <img src="images/AttitudeEstimation.PNG" width="800" height="600" alt="Before" /> 
