@@ -38,7 +38,9 @@ Result
 ---
  Before                     |  After
  :-------------------------:|:-------------------------:
- <img src="images/sensor-noise-before.PNG" width="320" height="160" alt="Before" /> |  <img src="images/sensor-noise-after.PNG" width="320" height="160" alt="After" />
+ <img src="images/sensor-noise-before.PNG" width="450" height="250" alt="Before" /> |  <img src="images/sensor-noise-after.PNG" width="450" height="250" alt="After" />
+ ---
+ <img src="images/sensor-noise-value.PNG" width="650" height="200" alt="Values" /> 
 
 
 
