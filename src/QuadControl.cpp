@@ -232,18 +232,25 @@ V3F QuadControl::LateralPositionControl(V3F posCmd, V3F velCmd, V3F pos, V3F vel
   V3F accelCmd = accelCmdFF;
 
   ////////////////////////////// BEGIN STUDENT CODE ///////////////////////////
-  const V3F error = posCmd - pos;
-  velCmd += kpPosXY * error;
-
-  velCmd.x = CONSTRAIN(velCmd.x, -maxSpeedXY, maxSpeedXY);
-  velCmd.y = CONSTRAIN(velCmd.y, -maxSpeedXY, maxSpeedXY);
-
-  const V3F error_dot = velCmd - vel;
-  accelCmd += kpVelXY * error_dot;
-
-  accelCmd.x = CONSTRAIN(accelCmd.x, -maxAccelXY, maxAccelXY);
-  accelCmd.y = CONSTRAIN(accelCmd.y, -maxAccelXY, maxAccelXY);
-  accelCmd.z = 0.0F;
+  V3F h_velocity = kpPosXY * (posCmd - pos);
+  // horizontal velocity
+  float h_v_mag = sqrtf(h_velocity.x*h_velocity.x + h_velocity.y*h_velocity.y);
+  // control horizontal velocity
+  if (h_v_mag > maxSpeedXY)
+  {
+	  h_velocity = h_velocity * maxSpeedXY / h_v_mag;
+  }
+  V3F h_acceleration = kpVelXY * (velCmd - vel);
+  // horizontal acceleration
+  float h_a_mag = sqrtf(h_acceleration.x*h_acceleration.x + h_acceleration.y*h_acceleration.y);
+  // control horizontal acceleration
+  if (h_a_mag > maxAccelXY)
+  {
+	  h_acceleration = h_acceleration * maxAccelXY / h_a_mag;
+  }
+  accelCmd = h_velocity + h_acceleration + accelCmd ;
+  // update acceleration with feed
+  accelCmd = kpPosXY * (posCmd - pos) + kpVelXY * (velCmd - vel) + accelCmd;
   /////////////////////////////// END STUDENT CODE ////////////////////////////
 
   return accelCmd;
@@ -264,9 +271,19 @@ float QuadControl::YawControl(float yawCmd, float yaw)
 
   float yawRateCmd=0;
   ////////////////////////////// BEGIN STUDENT CODE ///////////////////////////
-  float error = yawCmd - yaw;
-  error = fmodf(error, 2.*F_PI);
-  yawRateCmd = kpYaw * error;
+  // yaw to me between 0 and 2*pi
+  yawCmd = fmodf(yawCmd, 2*M_PI);
+  float yaw_err = yawCmd - yaw;
+  if (yaw_err > M_PI)
+  {
+	  yaw_err = yaw_err - 2.f*M_PI;
+  }
+  else if (yaw_err < -M_PI)
+  {
+	  yaw_err = yaw_err + 2.f*M_PI;
+  }
+  // Update yaw controller
+  yawRateCmd = kpYaw*yaw_err;  
   /////////////////////////////// END STUDENT CODE ////////////////////////////
 
   return yawRateCmd;
