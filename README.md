@@ -149,6 +149,22 @@ The controller developed in the previous project should be de-tuned to successfu
 - Position and velocity gains have gone down from the initial value. This is enough to make the drone fly with an error of <1m for the entire box flight as shown in Task 5.
 ```
 
+###### Before Detuning of Controller ######
+<p align="center">
+ <img src="images/Before.png" width="800" height="600" alt="Before" /> 
+</p>
+
+###### Magnetometer After Detuning of Controller ######
+<p align="center">
+ <img src="images/MagUpdate1.PNG" width="800" height="600" alt="Before" /> 
+</p>
+
+###### GPS After Detuning of Controller ######
+<p align="center">
+ <img src="images/GPSUpdate1.PNG" width="800" height="600" alt="Before" /> 
+</p>
+
+
 MonteCarloTest                     |  TestManyQuads
  :-------------------------:|:-------------------------:
  <img src="images/MonteCarloTest.PNG" width="450" height="250" alt="Before" /> |  <img src="images/TestManyQuads.PNG" width="450" height="250" alt="Tests" />
