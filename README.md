@@ -148,6 +148,12 @@ The controller developed in the previous project should be de-tuned to successfu
 - The controller added from previous project successfully meet the performance criteria of the final scenario (<1m error for entire box flight).
 - Position and velocity gains have gone down from the initial value. This is enough to make the drone fly with an error of <1m for the entire box flight as shown in Task 5.
 ```
+- Updated to control Yaw in [src/QuadControl.cpp#L273-L287](src/QuadControl.cpp#L273-L287)
+- Updated to control Laterial position in [src/QuadControl.cpp#L234-L254](src/QuadControl.cpp#L234-L254)
+- Updated position controls in [config/QuadControlParams.txt#L21-L24](config/QuadControlParams.txt#L21-L24)
+- Updated velocity controls in [config/QuadControlParams.txt#L26-L28](config/QuadControlParams.txt#L26-L28)
+- Updated angle controls in [config/QuadControlParams.txt#L30-L32](config/QuadControlParams.txt#L30-L32)
+- Updated angle rate in [config/QuadControlParams.txt#L34-L35](config/QuadControlParams.txt#L34-L35)
 
 ###### Before Detuning of Controller ######
 <p align="center">
